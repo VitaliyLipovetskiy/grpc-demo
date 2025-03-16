@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package org.devtools.gateway;
+
+option java_multiple_files = true;
+
+service GatewayToTools {
+
+  rpc biDirectionalStream (stream BiDirectionalRequest) returns (stream BiDirectionalResponse) {}
+
+}
+
+message BiDirectionalRequest {
+  string type = 1;
+  oneof request {
+    string message = 2;
+    int32 count = 3;
+  }
+}
+
+message BiDirectionalResponse {
+  string message = 1;
+  optional string description = 3;
+}

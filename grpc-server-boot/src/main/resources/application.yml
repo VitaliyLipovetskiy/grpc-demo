@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: grpc-server-boot
+  grpc:
+    server:
+      port: ${GRPC_PORT}
+
+server:
+  port: ${HTTP_PORT}
