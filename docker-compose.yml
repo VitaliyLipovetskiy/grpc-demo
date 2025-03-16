@@ -1,0 +1,40 @@
+services:
+
+  grpc-server:
+    build:
+      context: grpc-server
+      dockerfile: Dockerfile
+    container_name: grpc-server
+    environment:
+      - HTTP_PORT=${SERVER_HTTP_PORT}
+      - GRPC_PORT=${SERVER_GRPC_PORT}
+    healthcheck:
+      test: [ 'CMD-SHELL', 'curl -f http://localhost:${SERVER_HTTP_PORT}/actuator/health || exit 1' ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  grpc-client:
+    build:
+      context: grpc-client
+      dockerfile: Dockerfile
+    container_name: grpc-client
+    ports:
+      - ${CLIENT_HTTP_PORT}:${CLIENT_HTTP_PORT}
+      - ${CLIENT_GRPC_PORT}:${CLIENT_GRPC_PORT}
+    environment:
+      - HTTP_PORT=${CLIENT_HTTP_PORT}
+      - GRPC_PORT=${CLIENT_GRPC_PORT}
+      - SERVER_GRPC_HOST=${SERVER_GRPC_HOST}
+      - SERVER_GRPC_PORT=${SERVER_GRPC_PORT}
+      - GRPC_DEADLINE=${GRPC_DEADLINE}
+    healthcheck:
+      test: [ 'CMD-SHELL', 'curl -f http://localhost:${CLIENT_HTTP_PORT}/actuator/health || exit 1' ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    depends_on:
+      grpc-server:
+        condition: service_healthy

@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: @application.name@
+
+server:
+  port: ${HTTP_PORT}
+
+grpc:
+  server:
+    port: ${GRPC_PORT}

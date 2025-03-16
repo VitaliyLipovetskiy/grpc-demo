@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: @application.name@
+
+server:
+  port: ${HTTP_PORT}
+
+grpc:
+  server:
+    port: ${GRPC_PORT}
+
+app:
+  grpc:
+    deadline: ${GRPC_DEADLINE}
+    keep-alive-time: 60000
+    server:
+      client:
+        host: ${SERVER_GRPC_HOST}
+        port: ${SERVER_GRPC_PORT}

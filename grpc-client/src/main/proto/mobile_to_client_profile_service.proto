@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package org.devtools.grpc.mobile;
+
+import "common/messages.proto";
+
+option java_multiple_files = true;
+
+service MobileProfileService {
+
+  rpc mobileGetProfileById (MobileProfileRequest) returns (MobileProfileResponse);
+
+  rpc getAllProfiles (common.Empty) returns (stream MobileProfileResponse);
+
+}
+
+message MobileProfileRequest {
+  int64 id = 1;
+}
+
+message MobileProfileResponse {
+  int64 id = 1;
+  string name = 2;
+  bool enabled = 3;
+  optional string address = 4;
+}
