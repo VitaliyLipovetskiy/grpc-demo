@@ -1,4 +1,4 @@
-package org.devtools.grpcserverboot;
+package org.devtools.grpcclientboot;
 
 import io.grpc.Status;
 import org.springframework.boot.SpringApplication;
@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.grpc.server.exception.GrpcExceptionHandler;
 
 @SpringBootApplication
-public class GrpcServerBootApplication {
+public class GrpcClientBootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GrpcServerBootApplication.class, args);
+        SpringApplication.run(GrpcClientBootApplication.class, args);
     }
 
     @Bean

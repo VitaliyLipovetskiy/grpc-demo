@@ -101,27 +101,8 @@
                             <goal>compile</goal>
                             <goal>compile-custom</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>io.github.floverfelt</groupId>
-                <artifactId>find-and-replace-maven-plugin</artifactId>
-                <version>${find-and-replace-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>exec</id>
-                        <phase>process-sources</phase>
-                        <goals>
-                            <goal>find-and-replace</goal>
-                        </goals>
                         <configuration>
-                            <replacementType>file-contents</replacementType>
-                            <baseDir>target/generated-sources/grpc-java/</baseDir>
-                            <findRegex>javax</findRegex>
-                            <replaceValue>jakarta</replaceValue>
-                            <recursive>true</recursive>
-                            <fileMask>.java</fileMask>
+                            <pluginParameter>jakarta_omit,@generated=omit</pluginParameter>
                         </configuration>
                     </execution>
                 </executions>
@@ -131,7 +112,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven-checkstyle-plugin.version}</version>
                 <configuration>
-                    <configLocation>../checkstyle.xml</configLocation>
+                    <configLocation>checkstyle.xml</configLocation>
                     <failOnViolation>true</failOnViolation>
                     <logViolationsToConsole>true</logViolationsToConsole>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>

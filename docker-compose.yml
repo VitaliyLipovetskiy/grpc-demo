@@ -2,9 +2,9 @@ services:
 
   grpc-server:
     build:
-      context: grpc-server
+      context: grpc-server-boot
       dockerfile: Dockerfile
-    container_name: grpc-server
+    container_name: grpc-server-boot
     environment:
       - HTTP_PORT=${SERVER_HTTP_PORT}
       - GRPC_PORT=${SERVER_GRPC_PORT}
@@ -17,9 +17,9 @@ services:
 
   grpc-client:
     build:
-      context: grpc-client
+      context: grpc-client-boot
       dockerfile: Dockerfile
-    container_name: grpc-client
+    container_name: grpc-client-boot
     ports:
       - ${CLIENT_HTTP_PORT}:${CLIENT_HTTP_PORT}
       - ${CLIENT_GRPC_PORT}:${CLIENT_GRPC_PORT}

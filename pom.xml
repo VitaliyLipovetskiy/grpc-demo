@@ -16,6 +16,8 @@
     <modules>
         <module>grpc-client</module>
         <module>grpc-server</module>
+        <module>grpc-server-boot</module>
+        <module>grpc-client-boot</module>
     </modules>
 
 </project>
