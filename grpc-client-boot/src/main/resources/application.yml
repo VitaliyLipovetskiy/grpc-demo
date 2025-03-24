@@ -3,7 +3,7 @@ spring:
     name: @application.name@
   grpc:
     server:
-      port: ${GRPC_PORT:9094}
+      port: ${GRPC_PORT}
       servlet:
         enabled: false
       health:
