@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package org.devtools.grpc;
+
+import "common/messages.proto";
+
+option java_multiple_files = true;
+
+service ProfileService {
+  rpc getProfileById (ProfileRequest) returns (ProfileResponse);
+
+  rpc getAllProfiles (common.Empty) returns (stream ProfileResponse) {}
+
+  rpc uploadFile (stream FileUploadRequest) returns (FilesUploadResponse);
+}
+
+message ProfileRequest {
+  int64 id = 1;
+}
+
+message ProfileResponse {
+  int64 id = 1;
+  string name = 2;
+  bool enabled = 3;
+  optional string address = 4;
+}
+
+message FileUploadRequest {     // Max 4MB
+  oneof fileDataRequest {
+    common.FileMetadata fileMetadata = 1;
+    bytes chunkFile = 2;
+  }
+}
+
+message FilesUploadResponse {
+  repeated string ids = 1;
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package org.devtools.common;
+
+option java_multiple_files = true;
+
+message Empty {}
+
+message FileMetadata {
+  optional string fileId = 1;
+  string name = 2;
+  string type = 3;
+  int64 contentLength = 4;
+  optional string uploadDate = 5;
+  oneof owner {
+    string consumerId = 6;
+    string userId = 7;
+  }
+}

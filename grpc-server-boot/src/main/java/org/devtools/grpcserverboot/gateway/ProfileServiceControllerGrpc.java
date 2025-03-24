@@ -1,17 +1,19 @@
-package org.devtools.grpcserver.gateway;
+package org.devtools.grpcserverboot.gateway;
 
 import com.google.rpc.Status;
 import io.grpc.protobuf.StatusProto;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.devh.boot.grpc.server.service.GrpcService;
 import org.devtools.common.Empty;
-import org.devtools.grpc.*;
-import org.devtools.grpcserver.profile.ProfileService;
-import org.devtools.grpcserver.validation.exceptions.ApplicationException;
+import org.devtools.grpc.ProfileRequest;
+import org.devtools.grpc.ProfileResponse;
+import org.devtools.grpc.ProfileServiceGrpc;
+import org.devtools.grpcserverboot.profile.ProfileService;
+import org.devtools.grpcserverboot.validation.exceptions.ApplicationException;
+import org.springframework.stereotype.Service;
 
-@GrpcService
+@Service
 @RequiredArgsConstructor
 @Slf4j
 public class ProfileServiceControllerGrpc extends ProfileServiceGrpc.ProfileServiceImplBase {

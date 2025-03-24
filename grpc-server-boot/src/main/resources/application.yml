@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: @application.name@
+  grpc:
+    server:
+      port: ${GRPC_PORT}
+      servlet:
+        enabled: false
+      health:
+        actuator:
+          enabled: false
+
+server:
+  port: ${HTTP_PORT}
